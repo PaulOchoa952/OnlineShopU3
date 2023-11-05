@@ -103,10 +103,14 @@ export class Tab1Page {
   public openAddProductPage(){
     this.router.navigate(['/add-product']);
   }
-public deleteProduct(product:Product,i:number){
-  this.productService.removeProduct(i);
-  console.log(this.productService.getProducts());
-}
+  public deleteProduct(product: Product, i: number) {
+    const confirmDelete = window.confirm(
+      '¿Estás seguro de que quieres eliminar este producto?'
+    );
+    if (confirmDelete) {
+      this.productService.removeProduct(i);
+    }
+  }
 public openUpdateProduct(productToEdit: Product, position: number) {
   this.router.navigate(['/update-product', {
     productToEdit: JSON.stringify(productToEdit),
