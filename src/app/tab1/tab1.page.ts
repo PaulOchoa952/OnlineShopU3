@@ -3,6 +3,7 @@ import { Product } from '../models/product.model';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -40,7 +41,8 @@ export class Tab1Page {
   ];
 //se importo el servicio en un constructor
   constructor(private cartService: CartService,private router:Router,
-    private productService: ProductService) {
+    private productService: ProductService,
+    private authService: AuthService) {
     this.products.push({
       name: "Aguacate",
       price: 100,
@@ -118,7 +120,13 @@ public openUpdateProduct(productToEdit: Product, position: number) {
   }]);
 }
 
+logout() {
+  // Realizar el proceso de logout
+  this.authService.logout();
 
+  // Redirigir al usuario a la página de inicio de sesión
+  this.router.navigate(['/login']);
+}
 
 
 
